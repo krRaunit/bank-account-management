@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>A Royal Wedding — Maharani Ishita &amp; Maharaj Kabir</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&family=Noto+Sans+Devanagari:wght@400;600&display=swap" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating gold particles -->
+  <div id="particles"></div>
+
+  <!-- ===== ROYAL SEAL — OPENING COVER ===== -->
+  <section id="royalSeal">
+    <!-- Wax seal top layer -->
+    <div class="seal-container" id="sealBtn">
+      <!-- Ornate corners -->
+      <div class="seal-corner sc-tl"></div>
+      <div class="seal-corner sc-tr"></div>
+      <div class="seal-corner sc-bl"></div>
+      <div class="seal-corner sc-br"></div>
+
+      <div class="seal-scroll">
+        <div class="scroll-top-curl"></div>
+        <div class="scroll-body">
+          <p class="seal-hindi">॥ श्री गणेशाय नमः ॥</p>
+          <div class="seal-crest">
+            <div class="crest-ring crest-r1"></div>
+            <div class="crest-ring crest-r2"></div>
+            <div class="crest-ring crest-r3"></div>
+            <div class="crest-crown">👑</div>
+          </div>
+          <p class="seal-decree">By Royal Decree</p>
+          <h1 class="seal-names">
+            <span class="sn-bride">Ishita</span>
+            <span class="sn-amp">&amp;</span>
+            <span class="sn-groom">Kabir</span>
+          </h1>
+          <p class="seal-subtitle">Request the honour of your esteemed presence<br>at their Grand Royal Wedding</p>
+          <div class="seal-open-area">
+            <div class="wax-seal" id="waxSeal">
+              <div class="wax-outer"></div>
+              <div class="wax-inner">
+                <span class="wax-monogram">I♛K</span>
+              </div>
+            </div>
+            <p class="seal-tap">Break the Royal Seal</p>
+          </div>
+        </div>
+        <div class="scroll-bottom-curl"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAIN INVITATION ===== -->
+  <div id="mainInvitation" class="royal-hidden">
+
+    <!-- PAGE 1: Grand Welcome -->
+    <section class="royal-page welcome-page">
+      <div class="page-velvet"></div>
+      <div class="ornate-frame">
+        <div class="of-corner of-tl"></div>
+        <div class="of-corner of-tr"></div>
+        <div class="of-corner of-bl"></div>
+        <div class="of-corner of-br"></div>
+        <div class="of-edge of-top"></div>
+        <div class="of-edge of-bottom"></div>
+        <div class="of-edge of-left"></div>
+        <div class="of-edge of-right"></div>
+      </div>
+
+      <div class="welcome-content">
+        <div class="royal-emblem">
+          <svg viewBox="0 0 200 200" class="emblem-svg">
+            <circle cx="100" cy="100" r="92" fill="none" stroke="url(#embGold)" stroke-width="1.5"/>
+            <circle cx="100" cy="100" r="82" fill="none" stroke="url(#embGold)" stroke-width="0.5" stroke-dasharray="3 5"/>
+            <circle cx="100" cy="100" r="72" fill="none" stroke="url(#embGold)" stroke-width="0.8"/>
+            <text x="100" y="90" text-anchor="middle" fill="url(#embGold)" font-family="Cinzel Decorative" font-size="14" letter-spacing="2">HOUSE OF</text>
+            <text x="100" y="120" text-anchor="middle" fill="url(#embGold)" font-family="Great Vibes" font-size="32">Ishita &amp; Kabir</text>
+            <defs>
+              <linearGradient id="embGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#D4A044"/>
+                <stop offset="50%" stop-color="#F6D989"/>
+                <stop offset="100%" stop-color="#D4A044"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <p class="welcome-label">The Noble Houses of</p>
+
+        <div class="houses-row">
+          <div class="house-card house-bride card-3d">
+            <div class="card-3d-inner">
+              <div class="card-3d-front">
+                <div class="house-shield bride-shield">👸</div>
+                <h3 class="house-family">House Sharma</h3>
+                <p class="house-elders">Shri Rajendra &amp; Smt. Kavita Sharma</p>
+                <p class="house-desc">Present their royal daughter</p>
+                <h2 class="house-name bride-color">Maharani Ishita</h2>
+              </div>
+            </div>
+          </div>
+
+          <div class="houses-between">
+            <div class="royal-heart">
+              <span class="rh-crown">👑</span>
+              <span class="rh-symbol">♛</span>
+            </div>
+          </div>
+
+          <div class="house-card house-groom card-3d">
+            <div class="card-3d-inner">
+              <div class="card-3d-front">
+                <div class="house-shield groom-shield">🤴</div>
+                <h3 class="house-family">House Kapoor</h3>
+                <p class="house-elders">Shri Vikram &amp; Smt. Meera Kapoor</p>
+                <p class="house-desc">Present their royal son</p>
+                <h2 class="house-name groom-color">Maharaj Kabir</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="royal-divider"><span class="rd-line"></span><span class="rd-gem">⚜</span><span class="rd-line"></span></div>
+        <p class="welcome-decree">Their Majesties cordially command the pleasure of your company<br>at the Grand Royal Union</p>
+      </div>
+    </section>
+
+    <!-- PAGE 2: Royal Date Reveal (Scratch) -->
+    <section class="royal-page date-page">
+      <div class="page-velvet"></div>
+      <div class="royal-divider"><span class="rd-line"></span><span class="rd-gem">⚜</span><span class="rd-line"></span></div>
+      <h2 class="page-title">The Auspicious Date</h2>
+      <p class="date-subtitle">Scratch the royal seal to unveil when the kingdoms unite</p>
+
+      <div class="scratch-wrapper">
+        <div class="scratch-reveal" id="scratchReveal">
+          <span class="sr-crown">👑</span>
+          <span class="sr-line sr-day">Saturday</span>
+          <span class="sr-line sr-date">20th December</span>
+          <span class="sr-line sr-year">2026</span>
+          <span class="sr-line sr-venue">The Royal Palace · Jaipur</span>
+        </div>
+        <canvas id="scratchCard"></canvas>
+      </div>
+
+      <div class="countdown-strip" id="countdownStrip">
+        <div class="cs-block"><span class="cs-num" id="csDays">000</span><span class="cs-label">Days</span></div>
+        <div class="cs-sep">·</div>
+        <div class="cs-block"><span class="cs-num" id="csHrs">00</span><span class="cs-label">Hours</span></div>
+        <div class="cs-sep">·</div>
+        <div class="cs-block"><span class="cs-num" id="csMins">00</span><span class="cs-label">Minutes</span></div>
+        <div class="cs-sep">·</div>
+        <div class="cs-block"><span class="cs-num" id="csSecs">00</span><span class="cs-label">Seconds</span></div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: Royal Events — 3D Flip Cards -->
+    <section class="royal-page events-page">
+      <div class="page-velvet"></div>
+      <div class="royal-divider"><span class="rd-line"></span><span class="rd-gem">⚜</span><span class="rd-line"></span></div>
+      <h2 class="page-title">The Royal Festivities</h2>
+      <p class="events-subtitle">Five days of grandeur, tradition, and celebration</p>
+
+      <div class="events-grid">
+        <!-- Haldi -->
+        <div class="event-3d" data-event="haldi">
+          <div class="event-3d-inner">
+            <div class="event-3d-front haldi-front">
+              <span class="evf-emoji">🌼</span>
+              <h3 class="evf-name">Haldi</h3>
+              <p class="evf-hint">Hover or Tap</p>
+            </div>
+            <div class="event-3d-back haldi-back">
+              <h3 class="evb-name">Haldi Ceremony</h3>
+              <div class="evb-details">
+                <p>📅 Dec 18, 2026</p>
+                <p>🕐 10:00 AM</p>
+                <p>📍 Sharma Haveli, Jaipur</p>
+              </div>
+              <p class="evb-desc">Ancient turmeric rituals to bless the royal couple with prosperity and joy.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mehndi -->
+        <div class="event-3d" data-event="mehndi">
+          <div class="event-3d-inner">
+            <div class="event-3d-front mehndi-front">
+              <span class="evf-emoji">✋</span>
+              <h3 class="evf-name">Mehndi</h3>
+              <p class="evf-hint">Hover or Tap</p>
+            </div>
+            <div class="event-3d-back mehndi-back">
+              <h3 class="evb-name">Royal Mehndi</h3>
+              <div class="evb-details">
+                <p>📅 Dec 18, 2026</p>
+                <p>🕐 5:00 PM</p>
+                <p>📍 The Queen's Garden</p>
+              </div>
+              <p class="evb-desc">An evening of intricate henna artistry beneath the palace canopy.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sangeet -->
+        <div class="event-3d" data-event="sangeet">
+          <div class="event-3d-inner">
+            <div class="event-3d-front sangeet-front">
+              <span class="evf-emoji">🎶</span>
+              <h3 class="evf-name">Sangeet</h3>
+              <p class="evf-hint">Hover or Tap</p>
+            </div>
+            <div class="event-3d-back sangeet-back">
+              <h3 class="evb-name">Royal Sangeet</h3>
+              <div class="evb-details">
+                <p>📅 Dec 19, 2026</p>
+                <p>🕐 7:00 PM</p>
+                <p>📍 The Grand Durbar Hall</p>
+              </div>
+              <p class="evb-desc">A night of dance, music, and merriment in the royal court.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Wedding -->
+        <div class="event-3d" data-event="wedding">
+          <div class="event-3d-inner">
+            <div class="event-3d-front wedding-front">
+              <span class="evf-emoji">💍</span>
+              <h3 class="evf-name">Wedding</h3>
+              <p class="evf-hint">Hover or Tap</p>
+            </div>
+            <div class="event-3d-back wedding-back">
+              <h3 class="evb-name">The Grand Wedding</h3>
+              <div class="evb-details">
+                <p>📅 Dec 20, 2026</p>
+                <p>🕐 9 AM Baraat · 11 AM Pheras</p>
+                <p>📍 Royal Lakshmi Temple</p>
+              </div>
+              <p class="evb-desc">The sacred union — where two noble houses become one dynasty.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reception -->
+        <div class="event-3d" data-event="reception">
+          <div class="event-3d-inner">
+            <div class="event-3d-front reception-front">
+              <span class="evf-emoji">🥂</span>
+              <h3 class="evf-name">Reception</h3>
+              <p class="evf-hint">Hover or Tap</p>
+            </div>
+            <div class="event-3d-back reception-back">
+              <h3 class="evb-name">Grand Reception</h3>
+              <div class="evb-details">
+                <p>📅 Dec 20, 2026</p>
+                <p>🕐 7:00 PM</p>
+                <p>📍 The Palace Ballroom</p>
+              </div>
+              <p class="evb-desc">A lavish evening banquet to honour the newlywed King &amp; Queen.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE 4: Royal Closing -->
+    <section class="royal-page closing-page">
+      <div class="page-velvet"></div>
+      <div class="royal-divider"><span class="rd-line"></span><span class="rd-gem">⚜</span><span class="rd-line"></span></div>
+
+      <div class="closing-content">
+        <p class="closing-quote">"A love story for the ages — written by destiny, sealed by the stars."</p>
+
+        <div class="closing-crest">
+          <span class="cc-letter">I</span>
+          <span class="cc-crown">♛</span>
+          <span class="cc-letter">K</span>
+        </div>
+
+        <p class="closing-message">Your gracious presence shall be the most treasured gift<br>at this royal celebration.</p>
+
+        <div class="closing-hashtag">#IshitaWedsKabir</div>
+
+        <div class="closing-ornament">
+          <span>⚜</span><span>✦</span><span>👑</span><span>✦</span><span>⚜</span>
+        </div>
+
+        <p class="closing-signed">With Royal Regards,<br>The Sharma &amp; Kapoor Dynasty</p>
+
+        <div class="royal-stamp">
+          <div class="stamp-ring"></div>
+          <span class="stamp-text">Sealed &amp; Decreed<br>2026</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Music Toggle -->
+  <button id="musicBtn" class="music-btn royal-hidden" aria-label="Music">
+    <span class="mb-icon">🎺</span>
+  </button>
+
+  <script src="rob.js"></script>
+</body>
+</html>

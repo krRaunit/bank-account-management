@@ -1,0 +1,811 @@
+/* ============================================================
+   "THE ROYAL COURT" — Luxurious Royal Wedding
+   Burgundy · Royal Purple · Antique Gold · Velvet · 3D
+   ============================================================ */
+
+:root {
+  /* Royal Palette */
+  --burgundy:     #4A0020;
+  --burgundy-lt:  #6D1040;
+  --purple:       #2D1854;
+  --purple-deep:  #1A0E35;
+  --purple-lt:    #4A2C7A;
+  --maroon:       #800020;
+
+  /* Gold */
+  --gold:         #D4A044;
+  --gold-light:   #F6D989;
+  --gold-pale:    #FFF5D4;
+  --gold-dark:    #A67C28;
+  --gold-glow:    rgba(212,160,68,.35);
+
+  /* Surface */
+  --velvet:       #120818;
+  --velvet-card:  rgba(42,18,60,.7);
+  --text-cream:   #F6EDD9;
+  --text-muted:   #BCA88A;
+
+  /* Fonts */
+  --font-royal:   'Cinzel Decorative', serif;
+  --font-heading: 'Cinzel', serif;
+  --font-body:    'EB Garamond', serif;
+  --font-script:  'Great Vibes', cursive;
+  --font-hindi:   'Noto Sans Devanagari', sans-serif;
+}
+
+/* === Reset === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--velvet);
+  color: var(--text-cream);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+.royal-hidden { display: none !important; }
+
+/* ============================================================
+   FLOATING GOLD PARTICLES
+   ============================================================ */
+#particles {
+  position: fixed; inset: 0;
+  pointer-events: none; z-index: 1;
+  overflow: hidden;
+}
+.ptcl {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--gold-light);
+  box-shadow: 0 0 6px var(--gold);
+  pointer-events: none;
+  opacity: 0;
+  animation: ptclFloat linear infinite;
+}
+@keyframes ptclFloat {
+  0%   { transform: translateY(0) translateX(0) scale(1) rotate(0deg); opacity: 0; }
+  8%   { opacity: .6; }
+  50%  { transform: translateY(-55vh) translateX(40px) scale(.7) rotate(180deg); opacity: .4; }
+  100% { transform: translateY(-115vh) translateX(-20px) scale(.2) rotate(360deg); opacity: 0; }
+}
+
+/* ============================================================
+   ROYAL SEAL (OPENING COVER)
+   ============================================================ */
+#royalSeal {
+  position: fixed; inset: 0;
+  z-index: 1000;
+  display: flex; align-items: center; justify-content: center;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(74,0,32,.3) 0%, transparent 60%),
+    radial-gradient(ellipse at 50% 80%, rgba(45,24,84,.2) 0%, transparent 50%),
+    linear-gradient(180deg, #120818 0%, #1A0E35 50%, #120818 100%);
+  overflow: hidden;
+}
+
+/* Background shimmer on seal page */
+#royalSeal::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0px,
+      transparent 60px,
+      rgba(212,160,68,.015) 60px,
+      rgba(212,160,68,.015) 62px
+    );
+  pointer-events: none;
+}
+
+/* Scroll container */
+.seal-container {
+  position: relative;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Ornate corners */
+.seal-corner {
+  position: absolute;
+  width: 50px; height: 50px;
+  border-color: var(--gold);
+  z-index: 3;
+}
+.sc-tl { top: -16px; left: -16px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.sc-tr { top: -16px; right: -16px; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+.sc-bl { bottom: -16px; left: -16px; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.sc-br { bottom: -16px; right: -16px; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+
+/* Scroll (parchment look) */
+.seal-scroll {
+  position: relative;
+  width: min(90vw, 440px);
+}
+.scroll-top-curl, .scroll-bottom-curl {
+  height: 20px;
+  background: linear-gradient(180deg, var(--gold-dark), var(--gold-light), var(--gold-dark));
+  border-radius: 50% 50% 0 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,.5);
+}
+.scroll-bottom-curl {
+  border-radius: 0 0 50% 50%;
+  box-shadow: 0 -4px 16px rgba(0,0,0,.5);
+}
+.scroll-body {
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(212,160,68,.06) 0%, transparent 50%),
+    linear-gradient(180deg, #1E0E30, #170B28, #1E0E30);
+  border-left:  3px solid var(--gold);
+  border-right: 3px solid var(--gold);
+  padding: 36px 28px 32px;
+  text-align: center;
+}
+
+.seal-hindi {
+  font-family: var(--font-hindi);
+  font-size: clamp(13px, 3.5vw, 18px);
+  color: var(--gold);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 12px var(--gold-glow);
+}
+
+/* Crest / Crown */
+.seal-crest {
+  position: relative;
+  width: 110px; height: 110px;
+  margin: 0 auto 20px;
+}
+.crest-ring {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+}
+.crest-r1 { animation: spinCrest 20s linear infinite; }
+.crest-r2 { inset: 12px; border-style: dashed; border-color: var(--gold-dark); animation: spinCrest 28s linear infinite reverse; }
+.crest-r3 { inset: 24px; border-width: 1px; border-color: var(--gold-light); animation: spinCrest 16s linear infinite; }
+.crest-crown {
+  position: absolute; inset: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+  filter: drop-shadow(0 0 10px rgba(255,215,0,.4));
+  animation: crownBob 3s ease-in-out infinite;
+}
+@keyframes spinCrest { to { transform: rotate(360deg); } }
+@keyframes crownBob {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%      { transform: translateY(-4px) scale(1.05); }
+}
+
+.seal-decree {
+  font-family: var(--font-royal);
+  font-size: clamp(10px, 2.6vw, 13px);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  margin-bottom: 14px;
+}
+
+.seal-names {
+  font-family: var(--font-script);
+  font-size: clamp(42px, 11vw, 68px);
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.sn-bride { color: var(--gold-light); }
+.sn-amp {
+  font-family: var(--font-heading);
+  font-size: .35em;
+  color: var(--gold-dark);
+  vertical-align: middle;
+  margin: 0 8px;
+}
+.sn-groom { color: var(--gold-light); }
+
+.seal-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 3.2vw, 16px);
+  font-weight: 400;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 28px;
+}
+
+/* Wax Seal Button */
+.seal-open-area { text-align: center; }
+
+.wax-seal {
+  width: 90px; height: 90px;
+  margin: 0 auto 10px;
+  position: relative;
+  cursor: pointer;
+}
+.wax-outer {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #A52A2A, #800020 50%, #5A0015 100%);
+  box-shadow:
+    0 4px 20px rgba(0,0,0,.5),
+    inset 0 -2px 6px rgba(0,0,0,.4),
+    inset 0 2px 4px rgba(255,200,200,.15);
+  animation: sealPulse 2.5s ease-in-out infinite;
+}
+@keyframes sealPulse {
+  0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,.5), 0 0 0 0 rgba(128,0,32,.3); }
+  50%      { box-shadow: 0 4px 20px rgba(0,0,0,.5), 0 0 0 12px rgba(128,0,32,0); }
+}
+
+.wax-inner {
+  position: absolute; inset: 12px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,200,200,.2);
+  display: flex; align-items: center; justify-content: center;
+}
+.wax-monogram {
+  font-family: var(--font-royal);
+  font-size: 16px;
+  color: var(--gold-light);
+  letter-spacing: 1px;
+  text-shadow: 0 0 6px rgba(255,215,0,.3);
+}
+
+.seal-tap {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  animation: fadePulse 2s ease-in-out infinite;
+}
+@keyframes fadePulse {
+  0%, 100% { opacity: .5; }
+  50%      { opacity: 1; }
+}
+
+/* ============================================================
+   GENERAL PAGE STYLES
+   ============================================================ */
+.royal-page {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+  overflow: hidden;
+  z-index: 2;
+}
+
+/* Velvet background texture */
+.page-velvet {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(74,0,32,.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(45,24,84,.12) 0%, transparent 50%),
+    repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(255,255,255,.008) 2px, rgba(255,255,255,.008) 3px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Ornate Frame */
+.ornate-frame {
+  position: absolute; inset: 20px;
+  pointer-events: none; z-index: 0;
+}
+.of-corner {
+  position: absolute;
+  width: 60px; height: 60px;
+}
+.of-tl { top: 0; left: 0; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.of-tr { top: 0; right: 0; border-top: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+.of-bl { bottom: 0; left: 0; border-bottom: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+.of-br { bottom: 0; right: 0; border-bottom: 2px solid var(--gold); border-right: 2px solid var(--gold); }
+
+.of-edge {
+  position: absolute;
+  background: var(--gold);
+  opacity: .15;
+}
+.of-top    { top: 0; left: 80px; right: 80px; height: 1px; }
+.of-bottom { bottom: 0; left: 80px; right: 80px; height: 1px; }
+.of-left   { left: 0; top: 80px; bottom: 80px; width: 1px; }
+.of-right  { right: 0; top: 80px; bottom: 80px; width: 1px; }
+
+/* Royal Divider */
+.royal-divider {
+  display: flex; align-items: center; gap: 14px;
+  max-width: 300px; width: 100%;
+  margin: 0 auto 28px;
+}
+.rd-line {
+  flex: 1; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+}
+.rd-gem {
+  color: var(--gold);
+  font-size: 20px;
+  text-shadow: 0 0 8px var(--gold-glow);
+  animation: gemSpin 6s linear infinite;
+}
+@keyframes gemSpin { to { transform: rotate(360deg); } }
+
+/* Page Title */
+.page-title {
+  font-family: var(--font-royal);
+  font-size: clamp(24px, 6.5vw, 42px);
+  font-weight: 400;
+  letter-spacing: 4px;
+  color: var(--gold-light);
+  text-align: center;
+  margin-bottom: 12px;
+  text-shadow: 0 0 20px var(--gold-glow);
+}
+
+/* ============================================================
+   WELCOME PAGE — HOUSE CARDS (3D)
+   ============================================================ */
+.welcome-content {
+  max-width: 700px; width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+.royal-emblem {
+  width: 140px; height: 140px;
+  margin: 0 auto 28px;
+}
+.emblem-svg { width: 100%; height: 100%; }
+
+.welcome-label {
+  font-family: var(--font-heading);
+  font-size: 11px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+}
+
+.houses-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+/* 3D Card Container */
+.card-3d {
+  perspective: 1200px;
+  width: min(42vw, 260px);
+}
+.card-3d-inner {
+  position: relative;
+  width: 100%;
+  transition: transform .6s;
+  transform-style: preserve-3d;
+}
+.card-3d:hover .card-3d-inner {
+  transform: rotateY(8deg) rotateX(-3deg);
+}
+.card-3d-front {
+  background:
+    linear-gradient(145deg, rgba(74,0,32,.4), rgba(45,24,84,.35));
+  border: 1.5px solid var(--gold);
+  border-radius: 18px;
+  padding: 28px 18px 24px;
+  backdrop-filter: blur(10px);
+  box-shadow:
+    0 10px 40px rgba(0,0,0,.4),
+    inset 0 1px 0 rgba(255,255,255,.05);
+  text-align: center;
+  transform: translateZ(0);
+  transition: box-shadow .4s;
+}
+.card-3d:hover .card-3d-front {
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 0 30px var(--gold-glow);
+}
+
+.house-shield {
+  font-size: 40px;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.3));
+}
+
+.house-family {
+  font-family: var(--font-royal);
+  font-size: clamp(12px, 3vw, 16px);
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.house-elders {
+  font-family: var(--font-body);
+  font-size: clamp(12px, 2.8vw, 14px);
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+.house-desc {
+  font-size: clamp(11px, 2.6vw, 13px);
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.house-name {
+  font-family: var(--font-script);
+  font-size: clamp(28px, 7vw, 40px);
+  font-weight: 400;
+  line-height: 1.1;
+}
+.bride-color {
+  background: linear-gradient(135deg, #FFD700, #FFA000, #FFD700);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.groom-color {
+  background: linear-gradient(135deg, #FFD700, #FFA000, #FFD700);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+
+.houses-between { text-align: center; padding: 0 4px; }
+.royal-heart { position: relative; }
+.rh-crown {
+  display: block;
+  font-size: 28px;
+  animation: crownBob 3s ease-in-out infinite;
+}
+.rh-symbol {
+  display: block;
+  font-size: 22px;
+  color: var(--gold);
+  text-shadow: 0 0 10px var(--gold-glow);
+}
+
+.welcome-decree {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 3.5vw, 17px);
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ============================================================
+   DATE PAGE — SCRATCH CARD + COUNTDOWN
+   ============================================================ */
+.date-page { text-align: center; }
+.date-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 3.2vw, 16px);
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 26px;
+}
+
+.scratch-wrapper {
+  position: relative;
+  width: 320px; height: 200px;
+  margin: 0 auto 40px;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 40px rgba(212,160,68,.12), 0 10px 40px rgba(0,0,0,.4);
+  touch-action: none;
+}
+.scratch-reveal {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 4px;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(74,0,32,.3) 0%, transparent 70%),
+    var(--velvet);
+}
+.sr-crown { font-size: 28px; margin-bottom: 6px; }
+.sr-line { font-family: var(--font-heading); letter-spacing: 2px; }
+.sr-day  { font-size: 14px; color: var(--text-muted); }
+.sr-date { font-size: clamp(24px, 6vw, 34px); font-weight: 700; color: var(--gold-light); text-shadow: 0 0 16px var(--gold-glow); }
+.sr-year { font-size: clamp(36px, 9vw, 52px); font-weight: 900; color: var(--gold); text-shadow: 0 0 20px var(--gold-glow); }
+.sr-venue { font-size: 11px; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; }
+#scratchCard { position: absolute; inset: 0; cursor: grab; border-radius: 16px; }
+
+/* Countdown */
+.countdown-strip {
+  display: flex; align-items: center; justify-content: center;
+  gap: 6px; flex-wrap: wrap;
+}
+.cs-block { text-align: center; }
+.cs-num {
+  display: block;
+  font-family: var(--font-royal);
+  font-size: clamp(28px, 7vw, 44px);
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px var(--gold-glow);
+}
+.cs-label {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.cs-sep {
+  font-size: 28px; color: var(--gold-dark); opacity: .3;
+  margin-bottom: 14px;
+}
+
+/* ============================================================
+   EVENTS PAGE — 3D FLIP CARDS
+   ============================================================ */
+.events-page { text-align: center; padding-bottom: 80px; min-height: auto; }
+.events-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(13px, 3.2vw, 16px);
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 36px;
+}
+
+.events-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 700px;
+  width: 100%;
+}
+
+/* 3D Flip Card */
+.event-3d {
+  perspective: 1000px;
+  width: 170px; height: 220px;
+  cursor: pointer;
+}
+.event-3d-inner {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .7s cubic-bezier(.4,0,.2,1);
+}
+.event-3d.flipped .event-3d-inner,
+.event-3d:hover .event-3d-inner {
+  transform: rotateY(180deg);
+}
+
+.event-3d-front, .event-3d-back {
+  position: absolute; inset: 0;
+  border-radius: 16px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 20px 14px;
+  border: 1.5px solid var(--gold);
+  box-shadow: 0 8px 30px rgba(0,0,0,.4);
+}
+
+.event-3d-front {
+  background: var(--velvet-card);
+  backdrop-filter: blur(8px);
+}
+.event-3d-back {
+  transform: rotateY(180deg);
+  text-align: center;
+}
+
+/* Front styles */
+.evf-emoji { font-size: 42px; margin-bottom: 12px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.3)); }
+.evf-name {
+  font-family: var(--font-heading);
+  font-size: 16px;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.evf-hint {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-muted);
+  font-style: italic;
+  opacity: .6;
+}
+
+/* Back styles */
+.evb-name {
+  font-family: var(--font-heading);
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--gold-light);
+  margin-bottom: 10px;
+}
+.evb-details {
+  margin-bottom: 10px;
+}
+.evb-details p {
+  font-size: 11px;
+  color: var(--text-cream);
+  line-height: 1.7;
+}
+.evb-desc {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Event back backgrounds */
+.haldi-back    { background: linear-gradient(145deg, rgba(249,168,37,.15), rgba(42,18,60,.8)); }
+.mehndi-back   { background: linear-gradient(145deg, rgba(67,160,71,.15), rgba(42,18,60,.8)); }
+.sangeet-back  { background: linear-gradient(145deg, rgba(171,71,188,.15), rgba(42,18,60,.8)); }
+.wedding-back  { background: linear-gradient(145deg, rgba(212,160,68,.2), rgba(74,0,32,.8)); }
+.reception-back{ background: linear-gradient(145deg, rgba(230,81,0,.15), rgba(42,18,60,.8)); }
+
+/* Front border glows on hover */
+.haldi-front:hover   { border-color: #F9A825; box-shadow: 0 0 20px rgba(249,168,37,.2); }
+.mehndi-front:hover  { border-color: #43A047; box-shadow: 0 0 20px rgba(67,160,71,.2); }
+.sangeet-front:hover { border-color: #AB47BC; box-shadow: 0 0 20px rgba(171,71,188,.2); }
+.wedding-front:hover { border-color: var(--gold-light); box-shadow: 0 0 20px var(--gold-glow); }
+.reception-front:hover{ border-color: #E65100; box-shadow: 0 0 20px rgba(230,81,0,.2); }
+
+/* ============================================================
+   CLOSING PAGE
+   ============================================================ */
+.closing-page { text-align: center; }
+.closing-content { max-width: 520px; z-index: 2; }
+
+.closing-quote {
+  font-family: var(--font-body);
+  font-size: clamp(18px, 4.5vw, 24px);
+  font-style: italic;
+  color: var(--gold-light);
+  line-height: 1.6;
+  margin-bottom: 36px;
+  text-shadow: 0 0 14px var(--gold-glow);
+}
+
+.closing-crest {
+  font-family: var(--font-royal);
+  font-size: clamp(56px, 14vw, 96px);
+  letter-spacing: 8px;
+  margin-bottom: 28px;
+}
+.cc-letter { color: var(--gold-light); }
+.cc-crown {
+  color: var(--gold);
+  font-size: .5em;
+  vertical-align: middle;
+  margin: 0 4px;
+  display: inline-block;
+  animation: crownBob 3s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px var(--gold-glow));
+}
+
+.closing-message {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 3.5vw, 18px);
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.closing-hashtag {
+  font-family: var(--font-heading);
+  font-size: clamp(16px, 4vw, 22px);
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 24px;
+  text-shadow: 0 0 10px var(--gold-glow);
+}
+
+.closing-ornament {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  font-size: 18px;
+  color: var(--gold);
+  opacity: .5;
+  margin-bottom: 28px;
+}
+
+.closing-signed {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-style: italic;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 30px;
+}
+
+/* Royal Stamp */
+.royal-stamp {
+  position: relative;
+  width: 80px; height: 80px;
+  margin: 0 auto;
+}
+.stamp-ring {
+  position: absolute; inset: 0;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  opacity: .4;
+}
+.stamp-text {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-align: center;
+  color: var(--gold-dark);
+  line-height: 1.4;
+}
+
+/* ============================================================
+   MUSIC BUTTON
+   ============================================================ */
+.music-btn {
+  position: fixed;
+  bottom: 22px; right: 22px;
+  z-index: 100;
+  width: 50px; height: 50px;
+  border-radius: 50%;
+  border: 1.5px solid var(--gold);
+  background: rgba(18,8,24,.85);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+  font-size: 22px;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform .3s, box-shadow .3s;
+  box-shadow: 0 0 20px rgba(212,160,68,.1);
+}
+.music-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(212,160,68,.25);
+}
+.music-btn.playing {
+  animation: btnGlow 1.5s ease-in-out infinite;
+}
+@keyframes btnGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,160,68,.2); }
+  50%      { box-shadow: 0 0 0 10px rgba(212,160,68,0); }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 520px) {
+  .houses-row { flex-direction: column; }
+  .card-3d { width: min(80vw, 300px); }
+  .event-3d { width: 140px; height: 190px; }
+  .scratch-wrapper { width: 280px; height: 175px; }
+  .seal-crest { width: 90px; height: 90px; }
+  .crest-crown { font-size: 26px; }
+  .crest-r2 { inset: 10px; }
+  .crest-r3 { inset: 20px; }
+  .crest-crown { inset: 26px; }
+}
+
+/* ============================================================
+   UTIL (JS created)
+   ============================================================ */
+.gold-spark {
+  position: fixed;
+  pointer-events: none;
+  z-index: 999;
+  border-radius: 50%;
+  background: var(--gold-light);
+  box-shadow: 0 0 8px var(--gold);
+}
+.seal-shard {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1002;
+  border-radius: 2px;
+}
